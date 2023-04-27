@@ -31,9 +31,6 @@ def detect_fishing_state(pil_img):
     blue_pixels = count_pixels(pil_img, (blue_lower, blue_upper))
     green_pixels = count_pixels(pil_img, (green_lower, green_upper))
 
-    print("Blue pixels: {}".format(blue_pixels))
-    print("Green pixels: {}".format(green_pixels))
-
     if blue_pixels > green_pixels:
         if blue_pixels > 0:
             return 1
@@ -49,7 +46,5 @@ def detect_fishing_state(pil_img):
 def detect_fish_meter(pil_img):
     # Define color ranges
     green_pixels = count_pixels(pil_img, (green_lower, green_upper))
-
-    print("Green pixels: {}".format(green_pixels))
 
     return green_pixels

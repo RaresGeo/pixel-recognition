@@ -2,3 +2,7 @@ output
 __pycache__
 venv
 .idea
+Lib
+Include
+Scripts
+pyenv.cfg

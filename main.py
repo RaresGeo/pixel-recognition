@@ -2,6 +2,7 @@ import asyncio
 import random
 import threading
 from queue import Queue
+from datetime import datetime
 
 import keyboard
 import win32gui
@@ -36,7 +37,7 @@ def main():
     active_hwnd = win32gui.GetForegroundWindow()
     active_window_title = win32gui.GetWindowText(active_hwnd)
 
-    print(f"Target is: {active_window_title}, {active_hwnd}")
+    print(f"Target is: {active_window_title}, {active_hwnd}, started at {datetime.now().strftime('%H:%M:%S')}")
     # Start the rectangle window, pass active_hwnd to it
     t1 = threading.Thread(target=rectangle, args=(active_hwnd, message_queue))
 
@@ -47,10 +48,14 @@ def main():
     target_hwnd = find_target(target_title)
     rage_hwnd = active_hwnd
 
+    # img_game_one = game_one(target_hwnd)
+    # state = detect_fishing_state(img_game_one)
+    # print(f"State: {state}")
+
     # img_game_two = game_two(rage_hwnd)
     # green_pixels = detect_fish_meter(img_game_two)
     # print(f"Green pixels: {green_pixels}")
-    #
+    
     # if rage_hwnd != 169:
     #     return
 
@@ -74,6 +79,8 @@ def main():
         if state == 2:
             started_second_phase = True
             simulate_input()
+            # Print current datetime
+            print(f"Fish detected at {datetime.now().strftime('%H:%M:%S')}")
             # If everything went right, we should have a fish meter here now
             while True:
                 if keyboard.is_pressed('f6'):
@@ -103,6 +110,8 @@ def main():
                         break
                 if 35 > green_pixels > 0:
                     simulate_input()
+                    # Print current datetime
+                    print(f"Caught a fish at {datetime.now().strftime('%H:%M:%S')}")
                     break
         elif state == 0:
             simulate_input()

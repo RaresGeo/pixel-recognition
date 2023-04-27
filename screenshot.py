@@ -2,7 +2,7 @@ import win32api
 import win32gui
 from PIL import ImageGrab
 
-intended_res = (3440, 1440)
+intended_res = (2880, 1800)
 
 minigame_offset = 40
 minigame_height = 21
@@ -38,7 +38,6 @@ def game_two(hwnd):
     new_bottom = bottom - minigame_offset - minigame_height / 2 + 1
     bbox = (new_left, new_top, new_right, new_bottom)
 
-    print(f"New Window rectangle: {bbox}")
     img = ImageGrab.grab(bbox)
-    # img.save("output/screenshot.png")
+    # img.save("output/screenshot_two.png")
     return img
